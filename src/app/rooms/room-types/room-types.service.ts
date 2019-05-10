@@ -4,6 +4,7 @@ import { RoomType } from './room-type.model';
 export class RoomTypesService {
     selectedRoomType = new EventEmitter<RoomType>();
     updatedRoomTypes = new EventEmitter<RoomType[]>();
+    updateMode=new EventEmitter<boolean>();
     roomTypes: RoomType[] = [
         new RoomType(1, 'Classsic', 100),
         new RoomType(2, 'Classsic Sea View', 150),
@@ -15,6 +16,16 @@ export class RoomTypesService {
     getRoomTypes() {
         return this.roomTypes.slice();
     }
+
+    getRoomType(index: number) {
+        const roomType = this.roomTypes.find(
+            s => {
+                return s.id === index;
+            }
+        );
+        return roomType;
+    }
+
     deleteRoomType(index) {
         this.roomTypes.splice(index, 1);
         this.updatedRoomTypes.emit(this.roomTypes);

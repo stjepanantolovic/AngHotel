@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Room } from './room.model';
 import { RoomsService } from './rooms.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { RoomType } from './room-types/room-type.model';
 
 @Component({
   selector: 'app-rooms',
@@ -15,7 +17,9 @@ rooms: Room[];
 @ViewChild('roomNr')roomNumberRef: ElementRef;
 @ViewChild('roomPrc')roomPriceRef: ElementRef;
 
-constructor(private roomsService: RoomsService) { }
+constructor(private roomsService: RoomsService, 
+  private router:Router,
+  private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.rooms= this.roomsService.getRooms();
@@ -32,6 +36,9 @@ constructor(private roomsService: RoomsService) { }
    const rmID= this.rooms[(this.rooms.length-1)].id+1;
    const newRoom = new Room(rmID, rmNumber, rmTypeName, rmPrice);
    this.roomsService.addRoom(newRoom);
+  }
+  onReload(){
+    this.router.navigate(['rooms'], {relativeTo:this.route});
   }
 
 }
