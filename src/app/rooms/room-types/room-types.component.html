@@ -1,0 +1,52 @@
+<div class="col-sm-7"> 
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">RoomType</th>
+          <th scope="col">Room Price</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr app-room-type 
+        *ngFor="let roomType of roomTypes; let i=index" [roomType]="roomType" [id]="i" >
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class=col-sm-1></div>
+    <div class="col-sm-3">    
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Room Type Information
+                </div>
+    
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="roomTypeName">RoomType</label>
+                        <input type="text" id="roomTypeName"
+                               class="form-control" #roomTpName/>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="roomPrice">
+                            Price
+                        </label>
+                        <input type="number" id="roomPrice"
+                               class="form-control" #roomPrc/>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="btn btn-primary" type="submit" (click)="onAddItem()">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+    </div>
